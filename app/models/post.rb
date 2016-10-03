@@ -12,4 +12,6 @@
 #
 
 class Post < ActiveRecord::Base
+  # validations
+  validates :image_url, presence: true, uniqueness: true
 end
