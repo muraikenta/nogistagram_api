@@ -7,6 +7,7 @@ gem 'pry-byebug'
 gem 'hirb'
 gem 'hirb-unicode'
 gem 'quiet_assets'
+gem 'devise_token_auth'
 
 group :development do
   gem 'annotate'
