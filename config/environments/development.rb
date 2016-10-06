@@ -38,4 +38,9 @@ Rails.application.configure do
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
+  config.after_initialize do
+    Bullet.enable = true # Bulletプラグインを有効
+    Bullet.bullet_logger = true # log/bullet.logへの出力
+    Bullet.rails_logger = true # Railsログに出力
+  end
 end

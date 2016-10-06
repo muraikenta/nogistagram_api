@@ -8,7 +8,7 @@ class CreateUsers < ActiveRecord::Migration
       t.string :website
       t.integer :gender
       t.string :image_url
-      t.integer :privacy_type
+      t.integer :privacy_type, default: 0
 
       t.timestamps null: false
     end
