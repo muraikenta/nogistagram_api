@@ -20,7 +20,7 @@ class Api::OmniauthController < Api::BaseController
       response.headers.merge!(new_auth_header)
       render json: user
     else
-      render_error user.errors.full_messages
+      render_error user.errors.full_messages, status: :unprocessable_entity
     end
   end
 
