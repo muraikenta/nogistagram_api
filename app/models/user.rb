@@ -25,6 +25,7 @@
 #  current_sign_in_ip     :string
 #  last_sign_in_ip        :string
 #  tokens                 :text
+#  omniauth_token         :string
 #
 
 class User < ActiveRecord::Base
@@ -35,16 +36,23 @@ class User < ActiveRecord::Base
          :validatable
 
   include DeviseTokenAuth::Concerns::User
+
+  # associations
+  has_many :posts, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
+  has_many :follows_from_me, class_name: 'Follow', foreign_key: :from_user_id, dependent: :destroy
+  has_many :follows_from_others, class_name: 'Follow', foreign_key: :to_user_id, dependent: :destroy
+  has_many :following_users, class_name: 'User', through: :follows_from_me, source: :to_user_id
+  has_many :followed_users, class_name: 'User', through: :follows_from_others, source: :from_user_id
+
   # validations
   # TODO: DB側もuniqueに
   validates :unique_name, presence: true, uniqueness: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, presence: true, uniqueness: true
 
-  before_validation :set_dummy_unique_name
-
-  private
-
-  def set_dummy_unique_name
-    self.unique_name = Time.zone.now.to_s + self.email
+  def set_data_for_facebook
+    self.image_url = "https://graph.facebook.com/#{self.uid}/picture?type=large"
+    self.password = Devise.friendly_token[0, 20]
   end
 end
