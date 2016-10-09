@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   namespace :api, defaults: { format: :json } do
     resources :omniauth, only: [:create] do
-      post :sign_in
+      post :sign_in, on: :collection
     end
   end
 end
