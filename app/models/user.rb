@@ -43,8 +43,8 @@ class User < ActiveRecord::Base
   has_many :likes, dependent: :destroy
   has_many :follows_from_me, class_name: 'Follow', foreign_key: :from_user_id, dependent: :destroy
   has_many :follows_from_others, class_name: 'Follow', foreign_key: :to_user_id, dependent: :destroy
-  has_many :following_users, class_name: 'User', through: :follows_from_me, source: :to_user_id
-  has_many :followed_users, class_name: 'User', through: :follows_from_others, source: :from_user_id
+  has_many :following_users, class_name: 'User', through: :follows_from_me, source: :to_user
+  has_many :followed_users, class_name: 'User', through: :follows_from_others, source: :from_user
 
   # validations
   # TODO: DB側もuniqueに
@@ -54,5 +54,9 @@ class User < ActiveRecord::Base
   def set_data_for_facebook
     self.image_url = "https://graph.facebook.com/#{self.uid}/picture?type=large"
     self.password = Devise.friendly_token[0, 20]
+  end
+
+  def timeline_posts
+    Post.where(user: [self, self.following_users])
   end
 end

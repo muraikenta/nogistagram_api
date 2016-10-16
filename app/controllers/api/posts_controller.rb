@@ -3,8 +3,7 @@ class Api::PostsController < Api::BaseController
 
   def index
     if current_user
-      # TODO: 友達のpostsも含める
-      posts = current_user.posts
+      posts = current_user.timeline_posts
       render json: posts
     else
       render_not_found
