@@ -5,5 +5,6 @@ Rails.application.routes.draw do
     resources :omniauth, only: [:create] do
       post :sign_in
     end
+    resources :posts, only: [:index]
   end
 end
