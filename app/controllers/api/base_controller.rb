@@ -3,6 +3,8 @@ class Api::BaseController < ApplicationController
 
   protect_from_forgery with: :null_session
 
+  before_action :authenticate_user!
+
   rescue_from Exception, with: :render_error
   rescue_from ActionView::MissingTemplate, with: :render_not_found
 
