@@ -22,6 +22,6 @@ class Post < ActiveRecord::Base
   def set_image(binary)
     file_name = Time.zone.now.to_i.to_s + rand(1000000).to_s + ".png"
     File.open("public/post_images/#{file_name}", 'wb') { |f| f.write(binary) }
-    self.image_url =  "http://localhost:3002/post_images/#{file_name}"
+    self.image_url = "http://localhost:3002/post_images/#{file_name}"
   end
 end
