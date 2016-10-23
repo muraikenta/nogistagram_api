@@ -6,16 +6,17 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user_datas = [
-  {email: 'suzukisho@nogista.com', unique_name: 'suzukisho', password: 'suzukisho'},
-  {email: 'muraikenta@nogista.com', unique_name: 'muraikenta', password: 'muraikenta'},
-  {email: 'nishinonanase@nogista.com', unique_name: 'nishinonanase', password: 'nishinonanase'},
-  {email: 'hashimotonanami@nogista.com', unique_name: 'hashimotonanami', password: 'hashimotonanami'},
-  {email: 'ikutaerika@nogista.com', unique_name: 'ikutaerika', password: 'ikutaerika'},
+  {email: 'suzukisho@nogista.com', unique_name: 'suzukisho', name: '鈴木翔'},
+  {email: 'muraikenta@nogista.com', unique_name: 'muraikenta', name: '村井謙太'},
+  {email: 'nishinonanase@nogista.com', unique_name: 'nishinonanase', name: 'ななせまる'},
+  {email: 'hashimotonanami@nogista.com', unique_name: 'hashimotonanami', name: 'ななみん'},
+  {email: 'ikutaerika@nogista.com', unique_name: 'ikutaerika', name: 'いくちゃん'},
 ]
 users = []
 user_datas.each do |user_data|
   user = User.find_or_create_by!(email: user_data[:email], unique_name: user_data[:unique_name]) do |user|
-    user.password = user_data[:password]
+    user.name = user_data[:name]
+    user.password = 'password'
   end
   users.push(user)
 end
