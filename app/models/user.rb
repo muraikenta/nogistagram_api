@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 
   include DeviseTokenAuth::Concerns::User
 
-  # associations
+  # MARK: associations
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
@@ -46,11 +46,12 @@ class User < ActiveRecord::Base
   has_many :following_users, class_name: 'User', through: :follows_from_me, source: :to_user
   has_many :followed_users, class_name: 'User', through: :follows_from_others, source: :from_user
 
-  # validations
+  # MARK: validations
   # TODO: DB側もuniqueに
   validates :unique_name, presence: true, uniqueness: true
   validates :email, format: { with: /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i }, presence: true, uniqueness: true
 
+  # MARK: instance methods
   def set_data_for_facebook
     self.image_url = "https://graph.facebook.com/#{self.uid}/picture?type=large"
     self.password = Devise.friendly_token[0, 20]
@@ -58,5 +59,11 @@ class User < ActiveRecord::Base
 
   def timeline_posts
     Post.where(user: [self, self.following_users])
+  end
+
+  # MARK: class methods
+  def self.search(text)
+    return [] if text.blank?
+    return User.where('unique_name LIKE ? OR name LIKE ?', "%#{text}%", "%#{text}%")
   end
 end

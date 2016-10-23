@@ -2,8 +2,9 @@ class Api::SearchController < Api::BaseController
   skip_before_action :authenticate_user!
 
   def index
+    text = params[:text]
     render json: {
-      users: User.where('unique_name LIKE ?', "%#{params[:text]}%"),
+      users: User.search(text),
       tags: [],
       spots: [],
     }
