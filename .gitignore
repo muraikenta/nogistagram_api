@@ -17,4 +17,5 @@
 !/log/.keep
 /tmp
 
-public/post_images
+public/post_images/*
+!public/post_images/.keep
