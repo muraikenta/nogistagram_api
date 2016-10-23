@@ -8,6 +8,7 @@ gem 'hirb'
 gem 'hirb-unicode'
 gem 'quiet_assets'
 gem 'devise_token_auth'
+gem 'jbuilder', '2.6.0'
 
 group :development do
   gem 'annotate'
