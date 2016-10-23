@@ -31,11 +31,11 @@ class Post < ActiveRecord::Base
     Jbuilder.new do |post|
       post.call(self, :id, :user_id, :image_url, :body, :created_at)
       post.user self.user
-      post.is_liked self.liked_from?(user)
+      post.is_liked self.liked_by?(user)
     end
   end
 
-  def liked_from?(user)
+  def liked_by?(user)
     self.likes.find_by(user: user).present?
   end
 end
