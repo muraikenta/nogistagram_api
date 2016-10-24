@@ -8,14 +8,16 @@
 user_datas = [
   {email: 'suzukisho@nogista.com', unique_name: 'suzukisho', name: '鈴木翔'},
   {email: 'muraikenta@nogista.com', unique_name: 'muraikenta', name: '村井謙太'},
-  {email: 'nishinonanase@nogista.com', unique_name: 'nishinonanase', name: 'ななせまる'},
-  {email: 'hashimotonanami@nogista.com', unique_name: 'hashimotonanami', name: 'ななみん'},
-  {email: 'ikutaerika@nogista.com', unique_name: 'ikutaerika', name: 'いくちゃん'},
+  {email: 'nishinonanase@nogista.com', unique_name: 'nishinonanase', name: 'ななせまる', image_url: 'http://s3-ap-northeast-1.amazonaws.com/bigb.lucid/pages/a392f929a67bfa588f620a04a5006800.jpg'},
+  {email: 'hashimotonanami@nogista.com', unique_name: 'hashimotonanami', name: 'ななみん', image_url: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRcytWSbgKzjbE_AVukjD20O-stBwX3xVI98wTEkkzHKS_tOZyjdQ'},
+  {email: 'ikutaerika@nogista.com', unique_name: 'ikutaerika', name: 'いくちゃん', image_url: 'http://img.laughy.jp/7861/default_864c7684c171d55783baaec29cc7a397.jpg'},
 ]
 users = []
 user_datas.each do |user_data|
   user = User.find_or_create_by!(email: user_data[:email], unique_name: user_data[:unique_name]) do |user|
-    user.name = user_data[:name]
+    user_data.each do |key, value|
+      user[key] = value
+    end
     user.password = 'password'
   end
   users.push(user)
