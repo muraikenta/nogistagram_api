@@ -26,3 +26,16 @@ end
 users.permutation(2).each do |user_pair|
   user_pair[0].follows_from_me.create(to_user: user_pair[1])
 end
+
+s3_path = 'https://s3-ap-northeast-1.amazonaws.com/nogistagram/post_images/'
+post_datas = [
+  {user_unique_name: 'hashimotonanami', body: '卒業します...'},
+  {user_unique_name: 'ikutaerika', body: 'お腹すいた！！！'},
+  {user_unique_name: 'nishinonanase', body: 'ん〜、ななせまる！'},
+]
+post_datas.each do |post_data|
+  user = User.find_by(unique_name: post_data[:user_unique_name])
+  user.posts.find_or_create_by!(image_url: "#{s3_path}#{user.unique_name}.jpg") do |post|
+    post.body = post_data[:body]
+  end
+end
