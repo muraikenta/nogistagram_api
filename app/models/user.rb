@@ -58,7 +58,8 @@ class User < ActiveRecord::Base
   end
 
   def timeline_posts
-    Post.where(user: [self, self.following_users])
+    users = self.following_users + [self]
+    Post.where(user: users).includes(:user)
   end
 
   # MARK: class methods
