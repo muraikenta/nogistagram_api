@@ -7,5 +7,8 @@ Rails.application.routes.draw do
       post :sign_in, on: :collection
     end
     resources :posts, only: [:index, :create]
+    resources :likes, only: [:create] do
+      delete :destroy, on: :collection
+    end
   end
 end
