@@ -6,7 +6,7 @@ class Api::PostsController < Api::BaseController
 
   def timeline
     posts = current_user.timeline_posts
-    render json: posts.map { |page| page.to_builder(user: current_user).attributes! }
+    render json: posts.map { |post| post.to_builder(user: current_user).attributes! }
   end
 
   def create

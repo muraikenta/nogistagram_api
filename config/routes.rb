@@ -9,5 +9,8 @@ Rails.application.routes.draw do
     resources :posts, only: [:index, :create] do
       get :timeline, on: :collection
     end
+    resources :likes, only: [:create] do
+      delete :destroy, on: :collection
+    end
   end
 end
