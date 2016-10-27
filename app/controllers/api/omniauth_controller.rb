@@ -6,7 +6,7 @@ class Api::OmniauthController < Api::BaseController
     if user
       new_auth_header = user.create_new_auth_token
       response.headers.merge!(new_auth_header)
-      render json: user
+      render json: { data: user }
     else
       render_not_found
     end
@@ -18,7 +18,7 @@ class Api::OmniauthController < Api::BaseController
     if user.save
       new_auth_header = user.create_new_auth_token
       response.headers.merge!(new_auth_header)
-      render json: user
+      render json: { data: user }
     else
       render_error user.errors.full_messages, status: :unprocessable_entity
     end

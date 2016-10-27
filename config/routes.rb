@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     resources :omniauth, only: [:create] do
       post :sign_in, on: :collection
     end
-    resources :posts, only: [:index, :create]
+    resources :posts, only: [:index, :create] do
+      get :timeline, on: :collection
+    end
   end
 end
