@@ -1,9 +1,4 @@
 class Api::PostsController < Api::BaseController
-  def index
-    user = User.find(params[:user_id])
-    render json: user.posts.map { |page| page.to_builder(user: current_user).attributes! }
-  end
-
   def timeline
     posts = current_user.timeline_posts
     render json: posts.map { |post| post.to_builder(user: current_user).attributes! }
