@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :omniauth, only: [:create] do
       post :sign_in, on: :collection
     end
-    resources :users, only: [] do
+    resources :users, only: [:show] do
       get :posts, on: :member
     end
     resources :posts, only: [:create, :destroy] do
