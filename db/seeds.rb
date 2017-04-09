@@ -6,11 +6,11 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 user_datas = [
-  {email: 'suzukisho@nogista.com', unique_name: 'suzukisho', name: '鈴木翔'},
-  {email: 'muraikenta@nogista.com', unique_name: 'muraikenta', name: '村井謙太'},
-  {email: 'nishinonanase@nogista.com', unique_name: 'nishinonanase', name: 'ななせまる', image_url: 'http://s3-ap-northeast-1.amazonaws.com/bigb.lucid/pages/a392f929a67bfa588f620a04a5006800.jpg'},
+  {email: 'suzukisho@nogista.com', unique_name: 'suzukisho', name: '鈴木翔', image_url: 'https://pbs.twimg.com/profile_images/519171830767050752/IJcrUr4g.jpeg'},
+  {email: 'muraikenta@nogista.com', unique_name: 'muraikenta', name: '村井謙太', image_url: 'https://pbs.twimg.com/profile_images/519171830767050752/IJcrUr4g.jpeg'},
+  {email: 'nishinonanase@nogista.com', unique_name: 'nishinonanase', name: 'ななせまる', image_url: 'http://0117893.lolipop.jp/wallpaper/2015/AKB48/01171920_AKB48_78.jpg'},
   {email: 'hashimotonanami@nogista.com', unique_name: 'hashimotonanami', name: 'ななみん', image_url: 'https://encrypted-tbn1.gstatic.com/images?q=tbn:ANd9GcRcytWSbgKzjbE_AVukjD20O-stBwX3xVI98wTEkkzHKS_tOZyjdQ'},
-  {email: 'ikutaerika@nogista.com', unique_name: 'ikutaerika', name: 'いくちゃん', image_url: 'http://img.laughy.jp/7861/default_864c7684c171d55783baaec29cc7a397.jpg'},
+  {email: 'ikutaerika@nogista.com', unique_name: 'ikutaerika', name: 'いくちゃん', image_url: 'http://sakura-ch24.com/wp-content/uploads/2016/01/f7b74a1da5a18640677529c754c0bbba.jpg'},
 ]
 users = []
 user_datas.each do |user_data|
