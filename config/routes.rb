@@ -9,7 +9,7 @@ Rails.application.routes.draw do
     resources :users, only: [] do
       get :posts, on: :member
     end
-    resources :posts, only: [:create] do
+    resources :posts, only: [:create, :destroy] do
       get :timeline, on: :collection
     end
     resources :likes, only: [:create] do
