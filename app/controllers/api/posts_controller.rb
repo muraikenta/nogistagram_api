@@ -18,8 +18,7 @@ class Api::PostsController < Api::BaseController
   end
 
   def destroy
-
-    render json: {id: params[:id]}
+    render json: { id: params[:id] }
   end
 
   private

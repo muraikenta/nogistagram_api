@@ -8,7 +8,7 @@ class Api::UsersController < Api::BaseController
       user_json[:followers_count] = @user.follows_from_others.count
       user_json[:followings_count] = @user.follows_from_me.count
     end
-    render json:json
+    render json: json
   end
 
   def posts
@@ -20,5 +20,4 @@ class Api::UsersController < Api::BaseController
   def set_user
     @user = User.find(params[:id])
   end
-
 end
