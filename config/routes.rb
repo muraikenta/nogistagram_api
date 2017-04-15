@@ -15,5 +15,9 @@ Rails.application.routes.draw do
     resources :likes, only: [:create] do
       delete :destroy, on: :collection
     end
+    resources :follows, only: [:create] do
+      get :find, on: :collection
+      delete :destroy, on: :collection
+    end
   end
 end
